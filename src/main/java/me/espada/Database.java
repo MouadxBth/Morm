@@ -3,6 +3,8 @@ package me.espada;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import me.espada.functions.BiProducingFunction;
+import me.espada.model.StatementMaker;
+import me.espada.standard.StandardStatementMaker;
 
 import javax.sql.DataSource;
 
@@ -14,6 +16,11 @@ public class Database {
 
     private Credentials credentials;
     private DataSource dataSource;
+    private static StatementMaker statementMaker;
+
+    static {
+        statementMaker = new StandardStatementMaker();
+    }
 
     /**
      * To create and configure the HikariConfig with whatever
@@ -42,5 +49,9 @@ public class Database {
      */
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
+    }
+
+    public StatementMaker getStatementMaker() {
+        return statementMaker;
     }
 }

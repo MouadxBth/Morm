@@ -1,6 +1,6 @@
 package me.espada.functions;
 
 @FunctionalInterface
-public interface BiProducingFunction<T, U, R> {
-    R apply(T t, U u);
+public interface BiProducingFunction<T, U, Return> {
+    Return apply(T t, U u);
 }

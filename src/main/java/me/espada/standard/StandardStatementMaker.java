@@ -104,7 +104,6 @@ public class StandardStatementMaker implements StatementMaker {
     public String getSelectStatement(Query query, Class<?> rowClass) {
 
         StandardModel standardModel = getModel(rowClass);
-        String selectColumns = standardModel.getSelectColumns();
         String where = query.getWhere();
         String table = query.getTable();
         String orderBy = query.getOrderBy();
@@ -113,7 +112,7 @@ public class StandardStatementMaker implements StatementMaker {
             table = standardModel.getTable();
         }
 
-        StringBuilder selectStatement = new StringBuilder("SELECT ").append(selectColumns);
+        StringBuilder selectStatement = new StringBuilder("SELECT ").append(standardModel.getSelectColumns());
         selectStatement.append(" FROM ").append(table);
 
         if (where != null) {
